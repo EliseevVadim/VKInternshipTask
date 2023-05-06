@@ -1,8 +1,12 @@
 using Serilog;
 using Serilog.Events;
+using System.Reflection;
+using VKInternshipTask.Application.Common.Interfaces;
+using VKInternshipTask.Application.Common.Mappings;
 using VKInternshipTask.Application.Extensions;
 using VKInternshipTask.Persistence;
 using VKInternshipTask.Persistence.Extensions;
+using VKInternshipTask.WebApi.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +15,23 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.File("VKInternshipTask-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
+builder.Services.AddAutoMapper(config =>
+{
+    config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
+    config.AddProfile(new AssemblyMappingProfile(typeof(IUsersAPIDbContext).Assembly));
+});
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
+builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("InitialPolicy", policy =>
+    {
+        policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
+        policy.AllowAnyOrigin();
+    });
+});
 
 var app = builder.Build();
 
@@ -31,6 +50,12 @@ using (var scopes = app.Services.CreateScope())
 }
 
 
-app.MapGet("/", () => "Hello World!");
+app.UseCustomExceptionHandler();
+app.UseRouting();
+app.UseCors("InitialPolicy");
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.Run();

@@ -28,10 +28,25 @@ namespace VKInternshipTask.Persistence.EntityConfigurations
                 .HasColumnName("code")
                 .HasJsonPropertyName("code")
                 .IsRequired();
+            builder.HasIndex(state => state.UserStateCode).IsUnique();
             builder.Property(state => state.Description)
                 .HasColumnName("description")
                 .HasJsonPropertyName("description")
                 .IsRequired();
+            builder.HasData(
+                new UserState()
+                {
+                    Id = 1,
+                    UserStateCode = UserStateCode.Active,
+                    Description = "Active user"
+                },
+                new UserState()
+                {
+                    Id = 2,
+                    UserStateCode = UserStateCode.Blocked,
+                    Description = "Blocked user"
+                }
+            );
         }
     }
 }

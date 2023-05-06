@@ -28,10 +28,25 @@ namespace VKInternshipTask.Persistence.EntityConfigurations
                 .HasColumnName("code")
                 .HasJsonPropertyName("code")
                 .IsRequired();
+            builder.HasIndex(group => group.UserGroupCode).IsUnique();
             builder.Property(group => group.Description)
                 .HasColumnName("description")
                 .HasJsonPropertyName("description")
                 .IsRequired();
+            builder.HasData(
+                new UserGroup()
+                {
+                    Id = 1,
+                    UserGroupCode = UserGroupCode.Admin,
+                    Description = "User with administrative rights"
+                },
+                new UserGroup()
+                {
+                    Id = 2,
+                    UserGroupCode = UserGroupCode.User,
+                    Description = "User with common rights"
+                }
+            );
         }
     }
 }
