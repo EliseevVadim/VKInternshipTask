@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\VKInternshipTask.Application\VKInternshipTask.Application.csproj" />
     <ProjectReference Include="..\VKInternshipTask.Persistence\VKInternshipTask.Persistence.csproj" />
   </ItemGroup>

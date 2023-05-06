@@ -11,13 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentatio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CFA3702E-C59B-47E0-901C-2D2DE29953CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKInternshipTask.Domain", "VKInternshipTask.Domain\VKInternshipTask.Domain.csproj", "{76F76C1A-BE4D-41DA-8838-0ABE3FD820A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VKInternshipTask.Domain", "VKInternshipTask.Domain\VKInternshipTask.Domain.csproj", "{76F76C1A-BE4D-41DA-8838-0ABE3FD820A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKInternshipTask.Application", "VKInternshipTask.Application\VKInternshipTask.Application.csproj", "{85A874A9-C2F4-42A1-8D88-82575B6AE5CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VKInternshipTask.Application", "VKInternshipTask.Application\VKInternshipTask.Application.csproj", "{85A874A9-C2F4-42A1-8D88-82575B6AE5CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKInternshipTask.Persistence", "VKInternshipTask.Persistence\VKInternshipTask.Persistence.csproj", "{3B74B9D9-FFF7-42C9-97CD-99C5F7CF691F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VKInternshipTask.Persistence", "VKInternshipTask.Persistence\VKInternshipTask.Persistence.csproj", "{3B74B9D9-FFF7-42C9-97CD-99C5F7CF691F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VKInternshipTask.WebApi", "VKInternshipTask.WebApi\VKInternshipTask.WebApi.csproj", "{3D231805-F8D8-4E46-AD8C-7BB6CB84B5DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VKInternshipTask.WebApi", "VKInternshipTask.WebApi\VKInternshipTask.WebApi.csproj", "{3D231805-F8D8-4E46-AD8C-7BB6CB84B5DA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
