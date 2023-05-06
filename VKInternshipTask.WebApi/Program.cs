@@ -1,5 +1,6 @@
 using Serilog;
 using Serilog.Events;
+using VKInternshipTask.Application.Extensions;
 using VKInternshipTask.Persistence;
 using VKInternshipTask.Persistence.Extensions;
 
@@ -10,6 +11,7 @@ Log.Logger = new LoggerConfiguration()
     .WriteTo.File("VKInternshipTask-.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
+builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
 
 var app = builder.Build();
