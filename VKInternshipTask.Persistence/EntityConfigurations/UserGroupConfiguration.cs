@@ -20,7 +20,7 @@ namespace VKInternshipTask.Persistence.EntityConfigurations
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id")
                 .HasJsonPropertyName("id");
-            builder.Property(group => group.UserGroupCode)
+            builder.Property(group => group.Code)
                 .HasConversion(
                     value => value.ToString(),
                     value => (UserGroupCode)Enum.Parse(typeof(UserGroupCode), value)
@@ -28,7 +28,7 @@ namespace VKInternshipTask.Persistence.EntityConfigurations
                 .HasColumnName("code")
                 .HasJsonPropertyName("code")
                 .IsRequired();
-            builder.HasIndex(group => group.UserGroupCode).IsUnique();
+            builder.HasIndex(group => group.Code).IsUnique();
             builder.Property(group => group.Description)
                 .HasColumnName("description")
                 .HasJsonPropertyName("description")
@@ -37,13 +37,13 @@ namespace VKInternshipTask.Persistence.EntityConfigurations
                 new UserGroup()
                 {
                     Id = 1,
-                    UserGroupCode = UserGroupCode.Admin,
+                    Code = UserGroupCode.Admin,
                     Description = "User with administrative rights"
                 },
                 new UserGroup()
                 {
                     Id = 2,
-                    UserGroupCode = UserGroupCode.User,
+                    Code = UserGroupCode.User,
                     Description = "User with common rights"
                 }
             );

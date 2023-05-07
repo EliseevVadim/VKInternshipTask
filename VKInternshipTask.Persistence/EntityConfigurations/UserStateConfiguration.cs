@@ -20,7 +20,7 @@ namespace VKInternshipTask.Persistence.EntityConfigurations
                 .ValueGeneratedOnAdd()
                 .HasColumnName("id")
                 .HasJsonPropertyName("id");
-            builder.Property(state => state.UserStateCode)
+            builder.Property(state => state.Code)
                 .HasConversion(
                     value => value.ToString(),
                     value => (UserStateCode)Enum.Parse(typeof(UserStateCode), value)
@@ -28,7 +28,7 @@ namespace VKInternshipTask.Persistence.EntityConfigurations
                 .HasColumnName("code")
                 .HasJsonPropertyName("code")
                 .IsRequired();
-            builder.HasIndex(state => state.UserStateCode).IsUnique();
+            builder.HasIndex(state => state.Code).IsUnique();
             builder.Property(state => state.Description)
                 .HasColumnName("description")
                 .HasJsonPropertyName("description")
@@ -37,13 +37,13 @@ namespace VKInternshipTask.Persistence.EntityConfigurations
                 new UserState()
                 {
                     Id = 1,
-                    UserStateCode = UserStateCode.Active,
+                    Code = UserStateCode.Active,
                     Description = "Active user"
                 },
                 new UserState()
                 {
                     Id = 2,
-                    UserStateCode = UserStateCode.Blocked,
+                    Code = UserStateCode.Blocked,
                     Description = "Blocked user"
                 }
             );
