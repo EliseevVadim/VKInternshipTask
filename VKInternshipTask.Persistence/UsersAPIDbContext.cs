@@ -27,14 +27,5 @@ namespace VKInternshipTask.Persistence
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(GetType().Assembly);
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            IConfigurationRoot configuration = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory().Replace("Persistence", "WebApi"))
-                .AddJsonFile("appsettings.json")
-                .Build();
-            optionsBuilder.UseNpgsql(configuration["ConnectionString"]);
-        }
     }
 }
