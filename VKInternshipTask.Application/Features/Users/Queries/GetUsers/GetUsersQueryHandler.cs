@@ -28,6 +28,7 @@ namespace VKInternshipTask.Application.Features.Users.Queries.GetUsers
             var users = await _context.Users
                 .Include(user => user.UserGroup)
                 .Include(user => user.UserState)
+                .OrderBy(user => user.Id)
                 .Skip((page - 1) * size)
                 .Take(size)
                 .ProjectTo<UserViewModel>(_mapper.ConfigurationProvider)
