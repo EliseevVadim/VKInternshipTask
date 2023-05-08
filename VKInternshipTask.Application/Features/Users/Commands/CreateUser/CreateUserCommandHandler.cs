@@ -50,7 +50,7 @@ namespace VKInternshipTask.Application.Features.Users.Commands.CreateUser
         private async Task CheckIsAdminAlreadyExistsAsync(CancellationToken cancellationToken)
         {
             bool adminAlreadyExists = await _context.Users
-                    .Include(user => user.UserGroupId)
+                    .Include(user => user.UserGroup)
                     .AnyAsync(user => user.UserGroup.Code == UserGroupCode.Admin, cancellationToken);
             if (adminAlreadyExists)
                 throw new ConflictActionException("Admin user already exists");

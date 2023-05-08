@@ -30,7 +30,11 @@ namespace VKInternshipTask.Application.Features.Users.Commands.DeleteUser
                 throw new NotFoundException(nameof(User), request.UserId);
             if (user.UserState.Code == UserStateCode.Blocked)
                 throw new ConflictActionException("User has already been deleted");
-            user.UserState.Code = UserStateCode.Blocked;
+            UserState? blockedState = await _context.UsersStates
+                .FirstOrDefaultAsync(state => state.Code == UserStateCode.Blocked);
+            if (blockedState == null)
+                throw new NotFoundException(nameof(UserGroup), "Blocked");
+            user.UserStateId = blockedState.Id;
             await _context.SaveChangesAsync(cancellationToken);
         }
     }
