@@ -7,6 +7,7 @@ using VKInternshipTask.Application.Extensions;
 using VKInternshipTask.Persistence;
 using VKInternshipTask.Persistence.Extensions;
 using VKInternshipTask.WebApi.Extensions;
+using VKInternshipTask.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,9 @@ builder.Services.AddAutoMapper(config =>
     config.AddProfile(new AssemblyMappingProfile(Assembly.GetExecutingAssembly()));
     config.AddProfile(new AssemblyMappingProfile(typeof(IUsersAPIDbContext).Assembly));
 });
+builder.Services.AddAuthentication("Basic")
+    .AddBasicAuthentication();
+builder.Services.AddAuthorization();
 builder.Services.AddApplication();
 builder.Services.AddPersistence(builder.Configuration);
 builder.Services.AddControllers();
@@ -49,9 +53,10 @@ using (var scopes = app.Services.CreateScope())
     }
 }
 
-
 app.UseCustomExceptionHandler();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseCors("InitialPolicy");
 app.UseEndpoints(endpoints =>
 {
