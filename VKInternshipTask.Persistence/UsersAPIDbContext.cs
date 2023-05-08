@@ -1,10 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VKInternshipTask.Application.Common.Interfaces;
 using VKInternshipTask.Domain.Entities;
 
@@ -13,10 +7,10 @@ namespace VKInternshipTask.Persistence
     public class UsersAPIDbContext : DbContext, IUsersAPIDbContext
     {
         public UsersAPIDbContext()
-            :base() { }
+            : base() { }
 
         public UsersAPIDbContext(DbContextOptions<UsersAPIDbContext> options)
-            :base(options) { }
+            : base(options) { }
 
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<UserGroup> UsersGroups { get; set; } = null!;

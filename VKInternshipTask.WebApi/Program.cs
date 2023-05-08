@@ -7,7 +7,6 @@ using VKInternshipTask.Application.Extensions;
 using VKInternshipTask.Persistence;
 using VKInternshipTask.Persistence.Extensions;
 using VKInternshipTask.WebApi.Extensions;
-using VKInternshipTask.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 

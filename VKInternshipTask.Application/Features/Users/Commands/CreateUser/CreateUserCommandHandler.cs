@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using VKInternshipTask.Application.Common.Exceptions;
 using VKInternshipTask.Application.Common.Interfaces;
 using VKInternshipTask.Application.ViewModels;
@@ -62,7 +58,7 @@ namespace VKInternshipTask.Application.Features.Users.Commands.CreateUser
                 .Where(user => user.Login == login)
                 .OrderByDescending(user => user.CreatedDate)
                 .FirstOrDefaultAsync(cancellationToken);
-            if (userWithSimilarLogin != null && 
+            if (userWithSimilarLogin != null &&
                 userWithSimilarLogin.CreatedDate.Subtract(creationDate) <= TimeSpan.FromSeconds(5))
                 throw new ConflictActionException("User with same login created right now. Wait a little bit");
         }

@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Shouldly;
+﻿using Shouldly;
 using System.Threading;
 using System.Threading.Tasks;
+using VKInternshipTask.Application.Common.Exceptions;
 using VKInternshipTask.Application.Features.Users.Commands.CreateUser;
 using VKInternshipTask.Application.Features.Users.Queries.GetUserInfo;
 using VKInternshipTask.Application.ViewModels;
 using VKInternshipTask.Tests.Common;
 using Xunit;
-using VKInternshipTask.Application.Common.Exceptions;
 
 namespace VKInternshipTask.Tests.Features.Users.Queries
 {

@@ -1,9 +1,5 @@
 ﻿using AutoMapper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VKInternshipTask.Application.Common.Interfaces;
 using VKInternshipTask.Application.Common.Mappings;
 using VKInternshipTask.Persistence;
