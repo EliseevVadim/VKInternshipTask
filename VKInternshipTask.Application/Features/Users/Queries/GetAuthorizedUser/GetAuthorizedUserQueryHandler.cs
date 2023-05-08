@@ -11,8 +11,8 @@ namespace VKInternshipTask.Application.Features.Users.Queries.GetAuthorizedUser
 {
     public class GetAuthorizedUserQueryHandler : IRequestHandler<GetAuthorizedUserQuery, UserViewModel?>
     {
-        private IUsersAPIDbContext _context;
-        private IMapper _mapper;
+        private readonly IUsersAPIDbContext _context;
+        private readonly IMapper _mapper;
 
         public GetAuthorizedUserQueryHandler(IUsersAPIDbContext context, IMapper mapper)
         {

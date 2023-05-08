@@ -9,7 +9,7 @@ namespace VKInternshipTask.Application.Features.Users.Commands.DeleteUser
 {
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand>
     {
-        private IUsersAPIDbContext _context;
+        private readonly IUsersAPIDbContext _context;
 
         public DeleteUserCommandHandler(IUsersAPIDbContext context)
         {

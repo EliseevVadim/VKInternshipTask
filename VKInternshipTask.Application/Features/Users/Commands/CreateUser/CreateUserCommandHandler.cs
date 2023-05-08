@@ -13,8 +13,8 @@ namespace VKInternshipTask.Application.Features.Users.Commands.CreateUser
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, UserViewModel>
     {
-        private IUsersAPIDbContext _context;
-        private IMapper _mapper;
+        private readonly IUsersAPIDbContext _context;
+        private readonly IMapper _mapper;
 
         public CreateUserCommandHandler(IUsersAPIDbContext context, IMapper mapper)
         {

@@ -10,8 +10,8 @@ namespace VKInternshipTask.Application.Features.Users.Queries.GetUserInfo
 {
     public class GetUserInfoQueryHandler : IRequestHandler<GetUserInfoQuery, UserViewModel>
     {
-        private IUsersAPIDbContext _context;
-        private IMapper _mapper;
+        private readonly IUsersAPIDbContext _context;
+        private readonly IMapper _mapper;
 
         public GetUserInfoQueryHandler(IUsersAPIDbContext context, IMapper mapper)
         {

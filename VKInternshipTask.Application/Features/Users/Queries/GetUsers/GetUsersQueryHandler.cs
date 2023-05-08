@@ -9,8 +9,8 @@ namespace VKInternshipTask.Application.Features.Users.Queries.GetUsers
 {
     public class GetUsersQueryHandler : IRequestHandler<GetUsersQuery, UsersListViewModel>
     {
-        private IUsersAPIDbContext _context;
-        private IMapper _mapper;
+        private readonly IUsersAPIDbContext _context;
+        private readonly IMapper _mapper;
 
         private const int DEFAULT_PAGE = 1;
         private const int DEFAULT_SIZE = 10;

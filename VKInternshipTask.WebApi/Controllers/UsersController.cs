@@ -14,7 +14,7 @@ namespace VKInternshipTask.WebApi.Controllers
     [Route("api/[controller]")]
     public class UsersController : BaseController
     {
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public UsersController(IMapper mapper)
         {
