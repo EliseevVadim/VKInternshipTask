@@ -59,7 +59,7 @@ namespace VKInternshipTask.Application.Features.Users.Commands.CreateUser
                 .OrderByDescending(user => user.CreatedDate)
                 .FirstOrDefaultAsync(cancellationToken);
             if (userWithSimilarLogin != null &&
-                userWithSimilarLogin.CreatedDate.Subtract(creationDate) <= TimeSpan.FromSeconds(5))
+                creationDate.Subtract(userWithSimilarLogin.CreatedDate) <= TimeSpan.FromSeconds(5))
                 throw new ConflictActionException("User with same login created right now. Wait a little bit");
         }
 
