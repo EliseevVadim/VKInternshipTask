@@ -24,17 +24,17 @@ namespace VKInternshipTask.Application.Features.Users.Commands.CreateUser
 
         public async Task<UserViewModel> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            UserGroupCode groupCode = (UserGroupCode)Enum.Parse(typeof(UserGroupCode), request.UserGroupCode);
-            if (groupCode == UserGroupCode.Admin)
-                await CheckIsAdminAlreadyExistsAsync(cancellationToken);
-            UserGroup? requestedGroup = await _context.UsersGroups
-                .FirstOrDefaultAsync(group => group.Code == groupCode);
-            if (requestedGroup == null)
-                throw new NotFoundException(nameof(UserGroup), request.UserGroupCode);
             UserState? activeState = await _context.UsersStates
                 .FirstOrDefaultAsync(state => state.Code == UserStateCode.Active);
             if (activeState == null)
                 throw new NotFoundException(nameof(UserGroup), "Active");
+            UserGroupCode groupCode = (UserGroupCode)Enum.Parse(typeof(UserGroupCode), request.UserGroupCode);
+            if (groupCode == UserGroupCode.Admin)
+                await CheckIsAdminAlreadyExistsAsync(activeState.Id, cancellationToken);
+            UserGroup? requestedGroup = await _context.UsersGroups
+                .FirstOrDefaultAsync(group => group.Code == groupCode);
+            if (requestedGroup == null)
+                throw new NotFoundException(nameof(UserGroup), request.UserGroupCode);
             DateTime creationDate = DateTime.Now;
             await CheckUserWithSimilarLoginAsync(request.Login, creationDate, cancellationToken);
             User user = CreateUser(request, requestedGroup.Id, activeState.Id, creationDate);
@@ -43,11 +43,11 @@ namespace VKInternshipTask.Application.Features.Users.Commands.CreateUser
             return _mapper.Map<UserViewModel>(user);
         }
 
-        private async Task CheckIsAdminAlreadyExistsAsync(CancellationToken cancellationToken)
+        private async Task CheckIsAdminAlreadyExistsAsync(int activeStateId, CancellationToken cancellationToken)
         {
             bool adminAlreadyExists = await _context.Users
                     .Include(user => user.UserGroup)
-                    .AnyAsync(user => user.UserGroup.Code == UserGroupCode.Admin, cancellationToken);
+                    .AnyAsync(user => user.UserGroup.Code == UserGroupCode.Admin && user.UserStateId == activeStateId, cancellationToken);
             if (adminAlreadyExists)
                 throw new ConflictActionException("Admin user already exists");
         }
